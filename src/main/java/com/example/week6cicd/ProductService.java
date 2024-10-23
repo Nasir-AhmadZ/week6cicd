@@ -42,7 +42,6 @@ public class ProductService {
                 myList.remove(count);
             }
         }
-        myList.remove(id-1);
         return myList;
     }
 }

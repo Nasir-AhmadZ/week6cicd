@@ -1,6 +1,8 @@
 package com.example.week6cicd;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,4 +21,28 @@ public class ProductService {
         return myList;
     }
 
+    public List<Product> putProduct(@PathVariable int id, @RequestBody Product product)
+    {
+        for (int count =0;count <myList.size();count++)
+        {
+            if(myList.get(count).getId()==id)
+            {
+                myList.set(count,product);
+            }
+        }
+        return myList;
+    }
+
+    public List<Product> deleteProduct(@PathVariable int id)
+    {
+        for (int count =0;count <myList.size();count++)
+        {
+            if(myList.get(count).getId()==id)
+            {
+                myList.remove(count);
+            }
+        }
+        myList.remove(id-1);
+        return myList;
+    }
 }

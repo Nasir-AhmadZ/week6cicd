@@ -1,10 +1,8 @@
 package com.example.week6cicd;
 
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +17,6 @@ public class ProductController {
         this.myProduct = myProduct;
     }
 
-
-
-
-
     @PostMapping("/newProduct")
     public List<Product> newProduct(@Valid @RequestBody Product product)
     {
@@ -36,5 +30,16 @@ public class ProductController {
     public List<Product> getProduct()
     {
         return myProduct.getProduct();
+    }
+
+    @PutMapping("/{id}")
+    public List<Product> putProduct(@PathVariable int id, @RequestBody Product product){
+        return myProduct.putProduct(id, product);
+    }
+
+    @DeleteMapping("/{id}")
+    public List<Product> DeleteProduct(@PathVariable int id)
+    {
+        return myProduct.deleteProduct(id);
     }
 }
